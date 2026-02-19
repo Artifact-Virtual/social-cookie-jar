@@ -4,8 +4,8 @@ build-backend = "setuptools.backends._legacy:_Backend"
 
 [project]
 name = "social-cookie-jar"
-version = "0.1.0"
-description = "Headless social media toolkit for AI agents. Cookie-based auth, paste-not-type interactions."
+version = "0.2.0"
+description = "Headless social media toolkit for AI agents — 9 platforms, cookie-based auth, paste-and-send."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"

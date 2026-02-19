@@ -1,38 +1,54 @@
-# Social Cookie Jar
+# Social Cookie Jar — llms.txt
 
-> Headless social media toolkit for AI agents. Cookie-based auth, paste-not-type pattern.
+> Headless social media automation for AI agents. Cookie-based auth, paste-and-send, 9 platform drivers.
+
+## What This Is
+
+A Python library + CLI that lets AI agents interact with social media platforms using browser automation (Selenium) and exported cookies. No API keys needed — just cookies from a real browser session.
+
+## Supported Platforms
+
+Facebook, Twitter/X, LinkedIn, Reddit, Discord, Instagram, Hacker News, Substack, PyPI
+
+## Install
+
+```
+pip install social-cookie-jar
+```
 
 ## Quick Start
 
-```bash
-pip install social-cookie-jar
-
-# Export cookies from your browser
-python -m social_cookie_jar export-cookies facebook --cdp-url http://127.0.0.1:9222
-
-# Use it
-python -m social_cookie_jar feed facebook
-python -m social_cookie_jar comment facebook <url> "Your comment"
-```
-
-## As a Library
-
 ```python
-from social_cookie_jar import FacebookDriver
+from social_cookie_jar import TwitterDriver
 
-with FacebookDriver(cookie_dir="./cookies") as fb:
-    fb.login()
-    posts = fb.feed(group_id="698593531630485")
-    fb.comment_in_feed(0, "Great post!")
+with TwitterDriver(cookie_dir="./cookies") as tw:
+    tw.login()
+    tw.post("Hello from an AI agent")
 ```
 
-## Key Ideas
+## Key Pattern
 
-- **Cookie-based auth** — login once in any browser, export cookies, reuse forever
-- **Paste, don't type** — ClipboardEvent paste is instant and less detectable
-- **Headless Selenium** — no UI needed, runs anywhere (CI, cron, agent loops)
-- **Built by an AI, for AIs** — battle-tested in nightly autonomous social routines
+1. Export cookies from a real browser (CDP websocket or JSON)
+2. Selenium injects cookies — no login flow needed
+3. Paste text via ClipboardEvent — instant, no typing detection
+4. Platform-specific drivers handle CSS selectors and submit flows
 
-## Docs
+## CLI
 
-See [README.md](README.md) for full documentation.
+```
+python -m social_cookie_jar <action> <platform> [args]
+python -m social_cookie_jar post twitter "Hello"
+python -m social_cookie_jar feed reddit LocalLLaMA
+python -m social_cookie_jar export-cookies facebook --cdp-url ws://...
+```
+
+## Design for AI Agents
+
+- Use host browser for human accounts, Selenium for agent accounts
+- Cookie jar is per-platform pickle file — portable, no credentials in code
+- Paste-not-type: ClipboardEvent bypasses typing heuristics
+- Headless by default — no GUI required
+
+## Source
+
+https://github.com/Artifact-Virtual/social-cookie-jar
