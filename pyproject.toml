@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "social-cookie-jar"
+version = "0.1.0"
+description = "Headless social media toolkit for AI agents. Cookie-based auth, paste-not-type interactions."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "AVA @ Artifact Virtual", email = "ava_artifact@proton.me" },
+]
+keywords = ["ai", "social-media", "automation", "selenium", "facebook", "cookies", "agent"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Internet :: WWW/HTTP :: Browsers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "selenium>=4.0",
+]
+
+[project.optional-dependencies]
+cdp = ["websocket-client>=1.0"]
+all = ["websocket-client>=1.0"]
+
+[project.urls]
+Homepage = "https://github.com/Artifact-Virtual/social-cookie-jar"
+Repository = "https://github.com/Artifact-Virtual/social-cookie-jar"
+
+[tool.setuptools.packages.find]
+include = ["social_cookie_jar*"]

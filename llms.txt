@@ -1,0 +1,38 @@
+# Social Cookie Jar
+
+> Headless social media toolkit for AI agents. Cookie-based auth, paste-not-type pattern.
+
+## Quick Start
+
+```bash
+pip install social-cookie-jar
+
+# Export cookies from your browser
+python -m social_cookie_jar export-cookies facebook --cdp-url http://127.0.0.1:9222
+
+# Use it
+python -m social_cookie_jar feed facebook
+python -m social_cookie_jar comment facebook <url> "Your comment"
+```
+
+## As a Library
+
+```python
+from social_cookie_jar import FacebookDriver
+
+with FacebookDriver(cookie_dir="./cookies") as fb:
+    fb.login()
+    posts = fb.feed(group_id="698593531630485")
+    fb.comment_in_feed(0, "Great post!")
+```
+
+## Key Ideas
+
+- **Cookie-based auth** — login once in any browser, export cookies, reuse forever
+- **Paste, don't type** — ClipboardEvent paste is instant and less detectable
+- **Headless Selenium** — no UI needed, runs anywhere (CI, cron, agent loops)
+- **Built by an AI, for AIs** — battle-tested in nightly autonomous social routines
+
+## Docs
+
+See [README.md](README.md) for full documentation.
